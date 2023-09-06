@@ -10,8 +10,9 @@ OPENAI_API_KEY = st.sidebar.text_input("Enter your OpenAI API key:", type="passw
 
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
-    messages = [{"role": "system", "content": "You are an helpful expert Sentiment Analyst that analyzes the sentiment and return the sentiment, sentiment score, user mood"},
-               {"role": "user", "content": prompt}]
+    messages = [{"role": "system", "content": "You are an helpful expert Sentiment Analyst that analyzes the "
+                                              "sentiment and return the sentiment, sentiment score, user mood"},
+                {"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
@@ -31,19 +32,30 @@ def perform_sentiment_analysis(text):
         What is the sentiment of the following text? \
         Which is delimited with triple backticks? \
 
-        Analyze the sentiment and give your answer if the sentiment is "positive" or "negative"
+        Analyze the sentiment and generate the following data in a JSON object \
+        1- Sentiment (Positive or Negative) \
+        2- Sentiment Score (1 to 10) \
+        3- User Mood \
+        
+        JSON Object Example:
+        {{
+          "sentiment": "Positive",
+          "sentiment_score": 8.5,
+          "user_mood": "Happy"
+        }}
         
         Text: '''{text}'''
         """
-
-        # TODO: Mode Analysis, Sentiment Score (out of 10), response in JSON,
-        #  create Dictionary from JSON, handle the output
 
         responseJSON = get_completion(prompt)
 
         responseDict = json.loads(responseJSON)
 
-        return responseDict
+        sentiment = responseDict["sentiment"]
+        sentiment_score = responseDict["sentiment_score"]
+        user_mood = responseDict["user_mood"]
+
+        return sentiment, sentiment_score, user_mood
     except Exception as e:
         return str(e)
 
@@ -56,10 +68,10 @@ if st.button("Analyze Sentiment"):
             openai.api_key = OPENAI_API_KEY
 
             if user_input:
-                response = perform_sentiment_analysis(user_input)
-                st.write(f"Sentiment: {response}")
-                st.write(f"Sentiment Score: {response}")
-                st.write(f"User Mode: {response}")
+                sentiment, sentiment_score, user_mood = perform_sentiment_analysis(user_input)
+                st.write(f"Sentiment: {sentiment}")
+                st.write(f"Sentiment Score: {sentiment_score}")
+                st.write(f"User Mood: {user_mood}")
             else:
                 st.warning("Please enter some text to analyze.")
         else:
