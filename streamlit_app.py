@@ -10,7 +10,8 @@ OPENAI_API_KEY = st.sidebar.text_input("Enter your OpenAI API key:", type="passw
 
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
-    messages = [{"role": "user", "content": prompt}]
+    messages = [{"role": "system", "content": "You are an helpful expert Sentiment Analyst that analyzes the sentiment and return the sentiment, sentiment score, user mood"},
+               {"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
@@ -27,8 +28,8 @@ user_input = st.text_area("Enter your text here:")
 def perform_sentiment_analysis(text):
     try:
         prompt = f"""
-        What is the sentiment of the following text, 
-        which is delimited with triple backticks?
+        What is the sentiment of the following text? \
+        Which is delimited with triple backticks? \
 
         Analyze the sentiment and give your answer if the sentiment is "positive" or "negative"
         
