@@ -30,9 +30,9 @@ To run this project locally, follow these steps:
 1. Clone the repository to your local machine.
 2. Install the required Python packages by running:
 ` pip install python openai streamlit dotenv`
-3. Obtain an API key from OpenAI and configure it in your environment or a `.env` file.
+3. Obtain an API key from OpenAI
 4. Run the application using the following command:
-`streamlit run main.py`
+`streamlit run  streamlit_app.py`
 5. Access the web app in your browser by navigating to the provided URL (typically, http://localhost:8501).
 
 ## Usage
