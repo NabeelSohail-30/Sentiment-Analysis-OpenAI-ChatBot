@@ -37,7 +37,7 @@ To run this project locally, follow these steps:
 
 ## Usage
 
-1. Input: Enter the text you want to analyze in the provided input box.
+1. Input: Enter the Api key and then Enter the text you want to analyze in the provided input box.
 2. Click the "Analyze" button.
 3. The chatbot will provide the following information:
 - Sentiment (Positive or Negative)
