@@ -29,18 +29,23 @@ To run this project locally, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Install the required Python packages by running:
-3. ` pip install python openai streamlit `
+3. ` pip install python openai streamlit dotenv`
 4. Obtain an API key from OpenAI and configure it in your environment or a `.env` file.
 5. Run the application using the following command:
-6. Access the web app in your browser by navigating to the provided URL (typically, http://localhost:8501).
+6. `streamlit run main.py`
+7. Access the web app in your browser by navigating to the provided URL (typically, http://localhost:8501).
 
 ## Usage
 
-Once the application is up and running, you can access the Property Management System through a web browser. Use the provided user interface to perform actions such as:
+1. Input: Enter the text you want to analyze in the provided input box.
+2. Click the "Analyze" button.
+3. The chatbot will provide the following information:
+- Sentiment (Positive or Negative)
+- Sentiment Score (1 to 10)
+- User Mood
+4. You can also experiment with different texts to observe how the chatbot's analysis changes.
 
-- Adding new properties and tenants.
-- Managing property details and rental agreements.
-- Viewing reports and analytics related to property management.
+## Demo
 
 ## Contributing
 
